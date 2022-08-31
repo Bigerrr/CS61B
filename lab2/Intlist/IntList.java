@@ -5,7 +5,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -83,10 +83,14 @@ public class IntList {
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
         IntList res = A;
-        while(A.rest != null) {
+        while (A != null && A.rest != null) {
             A = A.rest;
         }
-        A.rest = B;
+        if(A == null) {
+            res = B;
+        } else {
+            A.rest = B;
+        }
         return res;
     }
 
@@ -96,45 +100,19 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        IntList res = new IntList(A.first, null);
+        IntList res = new IntList(-1, null);
         IntList ptr = res;
-        A = A.rest;
-        while(A != null) {
+        while (A != null) {
             ptr.rest = new IntList(A.first, null);
             A = A.rest;
             ptr = ptr.rest;
         }
-        while(B != null) {
+        while (B != null) {
             ptr.rest = new IntList(B.first, null);
             B = B.rest;
             ptr = ptr.rest;
         }
-        return res;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
-     * will be introduced later in the course or feature some form of advanced
-     * trickery which we implemented to help make your life a little easier for
-     * the lab.
-     */
-
-    @Override
-    public int hashCode() {
-        return first;
+        return res.rest;
     }
 
     /**
@@ -155,6 +133,18 @@ public class IntList {
             p.rest = new IntList(args[k], null);
         }
         return result;
+    }
+
+    /**
+     * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
+     * will be introduced later in the course or feature some form of advanced
+     * trickery which we implemented to help make your life a little easier for
+     * the lab.
+     */
+
+    @Override
+    public int hashCode() {
+        return first;
     }
 
     /**
