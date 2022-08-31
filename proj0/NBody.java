@@ -55,7 +55,7 @@ public class NBody {
             StdDraw.show();
             StdDraw.pause(10);
             time += dt;
-            System.out.println(time + " " + T);
+            // System.out.println(time + " " + T);
         }
 
         StdOut.printf("%d\n", allPlanets.length);

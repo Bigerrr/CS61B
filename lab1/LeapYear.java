@@ -2,6 +2,20 @@
  *  @author YOUR NAME HERE
  */
 public class LeapYear {
+    /**
+     *
+     * @param year
+     * @return
+     */
+    public static boolean isLeapYear(int year) {
+       if(year % 100 == 0 && year % 400 == 0) {
+           return true;
+       } else if(year % 100 != 0 && year % 4 == 0) {
+           return true;
+       } else {
+           return false;
+       }
+    }
 
     /** Calls isLeapYear to print correct statement.
      *  @param  year to be analyzed
