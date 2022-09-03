@@ -112,7 +112,7 @@ public class LinkedListDeque<T> {
         return getRecursive(n.next, index - 1);
     }
 
-    public class ListNode {
+    private class ListNode {
         ListNode prev;
         T item;
         ListNode next;

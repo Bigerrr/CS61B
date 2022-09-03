@@ -16,7 +16,7 @@ public class ArrayDeque<T> {
     /**
      * resize the array, ture -> *2 , false -> /2
      */
-    public void resize(boolean flag) {
+    private void resize(boolean flag) {
         int newSize;
         if (flag) {
             newSize = size * 2;
@@ -25,7 +25,7 @@ public class ArrayDeque<T> {
         }
         T[] array = (T[]) new Object[newSize];
         int pos = nextFirst + 1;
-        for(int count = 0; count < size; count++) {
+        for (int count = 0; count < size; count++) {
             array[count] = items[(pos + count) % items.length];
         }
 //        int beginFirst = items.length / 2, arrayFirst = array.length / 2;
@@ -47,7 +47,7 @@ public class ArrayDeque<T> {
         nextLast = size;
     }
 
-    public void usageCheck() {
+    private void usageCheck() {
         double usageRadio = 1.0 * size / items.length;
         if (items.length == N || usageRadio < 0.25) {
             return;
