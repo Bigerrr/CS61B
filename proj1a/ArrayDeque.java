@@ -90,8 +90,14 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
-    /** remove should +1, not -1*/
+    /**
+     * remove should +1, not -1
+     * should check isEmpty before execute
+     */
     public T removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
         size -= 1;
         nextFirst = (nextFirst + 1) % items.length;
         T tmp = items[nextFirst];
@@ -101,6 +107,9 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
+        if (isEmpty()) {
+            return null;
+        }
         size -= 1;
         nextLast = (nextLast - 1 + items.length) % items.length;
         T tmp = items[nextLast];
