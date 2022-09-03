@@ -49,7 +49,7 @@ public class ArrayDeque<T> {
 
     private void usageCheck() {
         double usageRadio = 1.0 * size / items.length;
-        if (items.length == N || usageRadio < 0.25) {
+        if (items.length == N || usageRadio >= 0.25) {
             return;
         }
         resize(false);

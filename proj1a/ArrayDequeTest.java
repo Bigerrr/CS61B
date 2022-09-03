@@ -82,11 +82,30 @@ public class ArrayDequeTest {
         lld1.addFirst(8);
         passed = checkSize(8, lld1.size()) && passed;
 
-        lld1.addFirst(9);
-        passed = checkSize(9, lld1.size()) && passed;
-
         int first = lld1.removeFirst();
         System.out.println("First: " + first);
+
+        int last = lld1.removeLast();
+        System.out.println("Last: " + last);
+
+        lld1.addFirst(0);
+        lld1.removeLast();
+        lld1.addLast(2);
+        lld1.removeLast();
+        lld1.addFirst(4);
+        lld1.removeFirst();
+        lld1.addFirst(6);
+        lld1.addLast(7);
+        lld1.addFirst(8);
+        lld1.addFirst(9);
+        lld1.addFirst(10);
+        lld1.get(3);
+        lld1.addLast(12);
+        lld1.addLast(13);
+        lld1.addFirst(14);
+        lld1.addFirst(15);
+        lld1.addFirst(16);
+        lld1.removeLast();
 
         System.out.println("Printing out deque: ");
         lld1.printDeque();
