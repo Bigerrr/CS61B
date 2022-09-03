@@ -90,10 +90,10 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
-
+    /** remove should +1, not -1*/
     public T removeFirst() {
         size -= 1;
-        nextFirst = (nextFirst - 1 + items.length) % items.length;
+        nextFirst = (nextFirst + 1) % items.length;
         T tmp = items[nextFirst];
         items[nextFirst] = null;
         usageCheck();
@@ -102,7 +102,7 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         size -= 1;
-        nextLast = (nextLast + 1) % items.length;
+        nextLast = (nextLast - 1 + items.length) % items.length;
         T tmp = items[nextLast];
         items[nextLast] = null;
         usageCheck();
