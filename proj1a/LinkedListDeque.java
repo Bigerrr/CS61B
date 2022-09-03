@@ -10,20 +10,20 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        sentinel = new ListNode(null, null, null);
-        sentinel.prev = sentinel;
-        sentinel.next = sentinel;
-        size = 0;
-        if (other.sentinel == null) {
-            return;
-        }
-        ListNode n = other.sentinel.next;
-        while (n != other.sentinel) {
-            addFirst(n.item);
-            n = n.next;
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//        sentinel = new ListNode(null, null, null);
+//        sentinel.prev = sentinel;
+//        sentinel.next = sentinel;
+//        size = 0;
+//        if (other.sentinel == null) {
+//            return;
+//        }
+//        ListNode n = other.sentinel.next;
+//        while (n != other.sentinel) {
+//            addFirst(n.item);
+//            n = n.next;
+//        }
+//    }
 
     public void addFirst(T item) {
         /** new node alloc */

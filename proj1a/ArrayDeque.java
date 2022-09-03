@@ -19,9 +19,9 @@ public class ArrayDeque<T> {
     private void resize(boolean flag) {
         int newSize;
         if (flag) {
-            newSize = size * 2;
+            newSize = items.length * 2;
         } else {
-            newSize = size / 2;
+            newSize = items.length / 2;
         }
         T[] array = (T[]) new Object[newSize];
         int pos = nextFirst + 1;
