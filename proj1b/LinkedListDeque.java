@@ -1,4 +1,4 @@
-public class LinkedListDeque<T> implements Deque<T>{
+public class LinkedListDeque<T> implements Deque<T> {
 
     private ListNode sentinel;
     private int size;
@@ -10,7 +10,7 @@ public class LinkedListDeque<T> implements Deque<T>{
         size = 0;
     }
 
-//    public LinkedListDeque(LinkedListDeque other) {
+    //    public LinkedListDeque(LinkedListDeque other) {
 //        sentinel = new ListNode(null, null, null);
 //        sentinel.prev = sentinel;
 //        sentinel.next = sentinel;
@@ -34,6 +34,7 @@ public class LinkedListDeque<T> implements Deque<T>{
         sentinel.next = n;
         size += 1;
     }
+
     @Override
     public void addLast(T item) {
         ListNode n = new ListNode(item, sentinel.prev, sentinel);
