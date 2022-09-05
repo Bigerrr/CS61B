@@ -86,7 +86,7 @@ public class IntList {
         while (A != null && A.rest != null) {
             A = A.rest;
         }
-        if(A == null) {
+        if (A == null) {
             res = B;
         } else {
             A.rest = B;
@@ -133,6 +133,21 @@ public class IntList {
             p.rest = new IntList(args[k], null);
         }
         return result;
+    }
+
+    public static IntList reverse(IntList A) {
+        if (A == null) {
+            return null;
+        }
+        IntList prev = null;
+        while (A.rest != null) {
+            IntList tmp = A.rest;
+            A.rest = prev;
+            prev = A;
+            A = tmp;
+        }
+        A.rest = prev;
+        return A;
     }
 
     /**
@@ -235,21 +250,6 @@ public class IntList {
         }
         out.format(")");
         return out.toString();
-    }
-
-    public static IntList reverse(IntList A) {
-        if(A == null) {
-            return null;
-        }
-        IntList prev = null;
-        while(A.rest != null) {
-            IntList tmp = A.rest;
-            A.rest = prev;
-            prev = A;
-            A = tmp;
-        }
-        A.rest = prev;
-        return A;
     }
 }
 
