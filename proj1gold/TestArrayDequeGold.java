@@ -12,7 +12,7 @@ public class TestArrayDequeGold {
         StringBuilder command = new StringBuilder();
         for(int i = 0; i < 100; i++) {
             double numberBetweenZeroAndOne = StdRandom.uniform();
-
+            Integer expected = 1, actual = 1;
             if(numberBetweenZeroAndOne < 0.25) {
                 sad.addFirst(i);
                 ads.addFirst(i);
@@ -23,24 +23,18 @@ public class TestArrayDequeGold {
                 command.append("addLast(").append(i).append(")\n");
             } else if(numberBetweenZeroAndOne < 0.75) {
                 if(sad.size() > 0) {
-                    sad.removeFirst();
-                    ads.removeFirst();
+                    actual = sad.removeFirst();
+                    expected = ads.removeFirst();
                     command.append("removeFirst()\n");
                 }
             } else {
                 if(sad.size() > 0) {
-                    sad.removeLast();
-                    ads.removeLast();
+                    actual = sad.removeLast();
+                    expected = ads.removeLast();
                     command.append("removeLast()\n");
                 }
             }
-        }
-        int i = 0;
-        for(Integer expected : ads) {
-            Integer actual = sad.get(i);
             assertEquals(String.valueOf(command), expected, actual);
-            i++;
         }
-        sad.printDeque();
     }
 }
