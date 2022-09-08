@@ -21,9 +21,9 @@ public class TestArrayRingBuffer {
     @Test
     public void someTest() {
         ArrayRingBuffer arb = new ArrayRingBuffer<Integer>(10);
-        arb.enqueue(1);
-        arb.enqueue(2);
-        arb.enqueue(3);
+        for (int i = 1; i <= 10; i++) {
+            arb.enqueue(i);
+        }
         for (Object n : arb) {
             System.out.println(n);
         }
@@ -31,5 +31,11 @@ public class TestArrayRingBuffer {
         assertEquals(1, arb.dequeue());
         assertEquals(2, arb.dequeue());
         assertEquals(3, arb.dequeue());
+        for (int i = 1; i <= 3; i++) {
+            arb.enqueue(i);
+        }
+        for (Object n : arb) {
+            System.out.println(n);
+        }
     }
 } 

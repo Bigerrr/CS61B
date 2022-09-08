@@ -3,7 +3,7 @@ import synthesizer.GuitarString;
 public class GuitarHero {
     private static final double CONCERT_BASIC = 440.0;
 
-    private static final String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
+    private static final String KEYBOARD = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
     private static GuitarString[] stringArray;
 
@@ -13,15 +13,15 @@ public class GuitarHero {
 
     public static void main(String[] args) {
         stringArray = new GuitarString[37];
-        for(int i = 0; i < 37; i++) {
+        for (int i = 0; i < 37; i++) {
             stringArray[i] = new GuitarString(getKeyConcert(i));
         }
 
-        while(true) {
-            if(StdDraw.hasNextKeyTyped()) {
+        while (true) {
+            if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
-                int index = keyboard.indexOf(key);
-                if(index == -1) {
+                int index = KEYBOARD.indexOf(key);
+                if (index == -1) {
                     System.out.println("ERROR KEY!!!");
                     continue;
                 }
@@ -30,7 +30,7 @@ public class GuitarHero {
 
             /* compute the superposition of samples */
             double sample = 0;
-            for(GuitarString gs: stringArray) {
+            for (GuitarString gs : stringArray) {
                 sample += gs.sample();
             }
 
@@ -38,7 +38,7 @@ public class GuitarHero {
             StdAudio.play(sample);
 
             /* advance the simulation of each guitar string by one step */
-            for(GuitarString gs: stringArray) {
+            for (GuitarString gs : stringArray) {
                 gs.tic();
             }
         }

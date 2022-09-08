@@ -29,16 +29,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         this.capacity = capacity;
     }
 
-    @Override
-    public int capacity() {
-        return capacity;
-    }
-
-    @Override
-    public int fillCount() {
-        return fillCount;
-    }
-
     /**
      * Adds x to the end of the ring buffer. If there is no room, then
      * throw new RuntimeException("Ring buffer overflow"). Exceptions
@@ -85,23 +75,23 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
     private class bufferIterator implements Iterator<T> {
         private int pos;
+        private int count;
 
         public bufferIterator() {
             pos = first;
+            count = 0;
         }
 
         @Override
         public boolean hasNext() {
-            return pos != last || capacity == fillCount;
+            return count < fillCount;
         }
 
         @Override
         public T next() {
-            if (!hasNext()) {
-                return null;
-            }
             T temp = rb[pos];
             pos = (pos + 1) % capacity;
+            count++;
             return temp;
         }
     }
