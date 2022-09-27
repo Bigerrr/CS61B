@@ -12,7 +12,7 @@ public class Percolation {
     private int[] dy = {0, 1, 0, -1};
     private int top;
     private int bottom;
-    public int size;
+    private int size;
     private int xyTo1D(int x, int y) {
         return x * size + y;
     }
@@ -30,11 +30,6 @@ public class Percolation {
         this.size = N;
         top = N * N;
         bottom = N * N + 1;
-        for(int i = 0; i < N; i++) {
-            uf.union(top, xyTo1D(0, i));
-            ufExcludeBottom.union(top, xyTo1D(0, i));
-            uf.union(bottom, xyTo1D(N-1, i));
-        }
     }
 
     public static void main(String[] args) {   // use for unit testing (not required, but keep this here for the autograder)
@@ -46,6 +41,13 @@ public class Percolation {
         }
         grid[row][col] = 1;
         openCount++;
+        if(row == 0) {
+            uf.union(top, xyTo1D(row, col));
+            ufExcludeBottom.union(top, xyTo1D(row, col));
+        }
+        if(row == size - 1) {
+           uf.union(bottom, xyTo1D(row, col));
+        }
         for (int i = 0; i < 4; i++) {
             int newX = row + dx[i], newY = col + dy[i];
             if(outOfRange(newX, newY)) {
