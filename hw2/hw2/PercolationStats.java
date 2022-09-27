@@ -22,9 +22,10 @@ public class PercolationStats {
         fractions = new double[T];
         size = N;
         testTimes = T;
+        int totalSites = N * N;
         for (int i = 0; i < T; i++) {
             Percolation pc = pf.make(N);
-            fractions[i] = perform(pc);
+            fractions[i] = 1.0 * perform(pc) / totalSites;
         }
     }
     public double mean() {                                           // sample mean of percolation threshold
@@ -42,6 +43,7 @@ public class PercolationStats {
 
     public static void main(String[] args) {
         PercolationFactory pf = new PercolationFactory();
-        PercolationStats ps = new PercolationStats(2, 10000, pf);
+        PercolationStats ps = new PercolationStats(20, 10, pf);
+        System.out.println(ps.mean());
     }
 }
