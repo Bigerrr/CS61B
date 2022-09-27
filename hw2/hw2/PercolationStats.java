@@ -12,36 +12,36 @@ public class PercolationStats {
         }
         return pc.numberOfOpenSites();
     }
-    private double mean;
-    private double stddev;
-    private double confidenceLow;
-    private double confidenceRight;
-    private int[] x;
+    private double[] fractions;
     private int size;
+    private int testTimes;
     public PercolationStats(int N, int T, PercolationFactory pf) {  // perform T independent experiments on an N-by-N grid
-        x = new int[T];
+        if (N <= 0 || T <= 0) {
+            throw new IllegalArgumentException();
+        }
+        fractions = new double[T];
         size = N;
+        testTimes = T;
         for (int i = 0; i < T; i++) {
             Percolation pc = pf.make(N);
-            x[i] = perform(pc);
+            fractions[i] = perform(pc);
         }
-        mean = StdStats.mean(x);
-        stddev = StdStats.stddev(x);
-        confidenceLow = mean - 1.96 * stddev / Math.sqrt(T);
-        confidenceRight = mean + 1.96 * stddev / Math.sqrt(T);
     }
     public double mean() {                                           // sample mean of percolation threshold
-        return mean;
+        return StdStats.mean(fractions);
     }
-    public double stddev() { return stddev; }                                         // sample standard deviation of percolation threshold
+    public double stddev() { return StdStats.stddev(fractions); }                                         // sample standard deviation of percolation threshold
     public double confidenceLow() {                                 // low endpoint of 95% confidence interval
-        return confidenceLow;
+        double mean = mean(), stddev = stddev();
+        return mean - 1.96 * stddev / Math.sqrt(testTimes);
     }
-    public double confidenceHigh() { return confidenceRight; }                                // high endpoint of 95% confidence interval
+    public double confidenceHigh() {
+        double mean = mean(), stddev = stddev();
+        return mean + 1.96 * stddev / Math.sqrt(testTimes);
+    }                                // high endpoint of 95% confidence interval
 
     public static void main(String[] args) {
         PercolationFactory pf = new PercolationFactory();
-        PercolationStats ps = new PercolationStats(20, 150, pf);
-        System.out.println(ps.mean);
+        PercolationStats ps = new PercolationStats(2, 10000, pf);
     }
 }
