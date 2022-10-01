@@ -6,10 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 
-import java.util.Set;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class TestSimpleOomage {
@@ -29,6 +26,19 @@ public class TestSimpleOomage {
           meaning no two SimpleOomages should EVER have the same
           hashCode UNLESS they have the same red, blue, and green values!
          */
+        Random random = new Random();
+        SimpleOomage ooA = new SimpleOomage(5, 10, 25);
+        SimpleOomage ooB = new SimpleOomage(25, 5, 10);
+        assertNotEquals(ooA.hashCode(), ooB.hashCode());
+        for(int i = 0; i < 100; i++) {
+            ooA = new SimpleOomage(random.nextInt(25)*10, random.nextInt(25) * 10, random.nextInt(25)*10);
+            ooB = new SimpleOomage(random.nextInt(25)*10, random.nextInt(25)*10, random.nextInt(25)*10);
+            if(ooA.equals(ooB)) {
+                assertEquals(ooA.hashCode(), ooB.hashCode());
+            } else {
+                assertNotEquals(ooA.hashCode(), ooB.hashCode());
+            }
+        }
     }
 
     @Test
@@ -42,7 +52,6 @@ public class TestSimpleOomage {
         assertNotEquals(ooA, "ketchup");
     }
 
-    /*
     @Test
     public void testHashCodeAndEqualsConsistency() {
         SimpleOomage ooA = new SimpleOomage(5, 10, 20);
@@ -50,10 +59,10 @@ public class TestSimpleOomage {
         HashSet<SimpleOomage> hashSet = new HashSet<>();
         hashSet.add(ooA);
         assertTrue(hashSet.contains(ooA2));
-    }*/
+    }
 
     /* TODO: Uncomment this test after you finish haveNiceHashCode Spread in OomageTestUtility */
-    /*@Test
+    @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
         int N = 10000;
@@ -63,7 +72,7 @@ public class TestSimpleOomage {
         }
 
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
-    }*/
+    }
 
     /** Calls tests for SimpleOomage. */
     public static void main(String[] args) {

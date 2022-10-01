@@ -9,11 +9,21 @@ public class ComplexOomage implements Oomage {
     protected List<Integer> params;
     private static final double WIDTH = 0.05;
 
+    public static Oomage deadlyOomage() {
+        int N = StdRandom.uniform(1, 10);
+        ArrayList<Integer> params = new ArrayList<>(N);
+        for (int i = 0; i < N - 1; i += 1) {
+            params.add(StdRandom.uniform(0, 255));
+        }
+        params.add(254);
+        return new ComplexOomage(params);
+    }
+
     @Override
     public int hashCode() {
         int total = 0;
         for (int x : params) {
-            total = total * 256;
+            total = total * 257;
             total = total + x;
         }
         return total;
